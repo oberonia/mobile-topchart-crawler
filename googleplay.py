@@ -3,10 +3,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import csv
+import csv, os
 
-driver = webdriver.Chrome(
-    'E:\mobile-topchart-crawler\chromedriver\chromedriver.exe')
+currPath = os.getcwd()
+driver = webdriver.Chrome(currPath+'\chromedriver\chromedriver.exe')
 
 # csv에서 게임명을 복사
 # 검색창에 검색
@@ -15,13 +15,13 @@ driver = webdriver.Chrome(
 # csv에 채워넣기
 
 # csv에서 게임명을 복사
-datafile = open(r'E:\mobile-topchart-crawler\uk.csv', encoding='utf-8')
+datafile = open(currPath+'\uk.csv', encoding='utf-8')
 reader = csv.reader(datafile)
 next(reader)
 next(reader)
 next(reader)  # to skip header
 
-resultfile = open(r'E:\mobile-topchart-crawler\uk-result.csv',
+resultfile = open(currPath+'\uk-result.csv',
                   'w', encoding='utf-8')
 storename = ['Game Name', 'Google Play']
 writer = csv.DictWriter(resultfile, fieldnames=storename)
